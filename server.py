@@ -15,8 +15,12 @@ def sent_analyzer():
     label = response['label']
     score = response['score']
 
-    # Devuelve una cadena formateada con la etiqueta de sentimiento y la puntuación
-    return "El texto dado ha sido identificado como {} con una puntuación de {}.".format(label.split('_')[1], score)
+   # Verifica si el label es None, indicando un error o entrada no válida
+    if label is None:
+        return "¡Entrada no válida! Intenta de nuevo."
+    else:
+        # Devuelve una cadena formateada con el label de sentimiento y el score
+        return "El texto dado ha sido identificado como {} con un score de {}.".format(label.split('_')[1], score)
 
 @app.route("/")
 def render_index_page():
